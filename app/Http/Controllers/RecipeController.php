@@ -115,7 +115,7 @@ class RecipeController extends Controller
 
     public function listRecipe(){
 
-        $recipes = Recipe::all();
+        $recipes = Recipe::paginate(10);
 
 
         return response()->json([
