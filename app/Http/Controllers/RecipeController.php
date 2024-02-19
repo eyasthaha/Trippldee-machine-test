@@ -81,8 +81,47 @@ class RecipeController extends Controller
 
     //Delete recipe
 
-    public function delete(){
-        
+    public function delete($id){
+
+        Recipe::where('id',$id)->delete();
+
+        return response()->json([
+            'message' => 'Recipe has been deleted successfully',
+        ]);
+
+    }
+
+
+    //Get details of one recipe
+
+    public function getRecipe($id){
+
+        $recipe = Recipe::where('id',$id)->first();
+
+        if( !$recipe ){
+            return response()->json([
+                'message' => 'Recipe not found',
+            ]);
+        }
+
+
+        return response()->json([
+            'result' => $recipe,
+        ]);
+
+    }
+
+    // List Recipes
+
+    public function listRecipe(){
+
+        $recipes = Recipe::all();
+
+
+        return response()->json([
+            'result' => $recipes,
+        ]);
+
     }
 
 

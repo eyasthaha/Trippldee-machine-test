@@ -19,10 +19,24 @@ use App\Http\Controllers\RecipeController;
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
+
+//Protected routes
+
 Route::group(['middleware' => 'auth:sanctum','prefix' => 'user'], function() {
 
     
     Route::post('create', [RecipeController::class, 'create']);
     Route::post('update/{id}', [RecipeController::class, 'update']);
+    Route::delete('delete/{id}', [RecipeController::class, 'delete']);
 
 });
+
+
+Route::get('getrecipe/{id}', [RecipeController::class, 'getRecipe']);
+Route::get('listrecipe', [RecipeController::class, 'listRecipe']);
+
+
+
+
+
+
