@@ -99,9 +99,7 @@ class RecipeController extends Controller
 
         $recipe = Recipe::where('id',$id)->first();
 
-        $rating = Rating::where('recipe_id',$id)->get()->avg('rating');
-
-        $recipe->rating = $rating;
+        $recipe->avg_rating = $recipe->rating->avg('rating');
 
         if( !$recipe ){
             return response()->json([

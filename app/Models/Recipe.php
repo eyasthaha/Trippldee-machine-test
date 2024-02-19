@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,5 +14,11 @@ class Recipe extends Model
         'difficulty',
         'veg'
     ];
+
+    public function rating(){
+
+        return $this->hasMany(Rating::class,'recipe_id');
+        
+    }
 
 }
