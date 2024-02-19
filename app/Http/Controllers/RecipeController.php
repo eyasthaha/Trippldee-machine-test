@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Recipe;
+use App\Models\Rating;
 
 use Validator;
 
@@ -97,6 +98,10 @@ class RecipeController extends Controller
     public function getRecipe($id){
 
         $recipe = Recipe::where('id',$id)->first();
+
+        $rating = Rating::where('recipe_id',$id)->get()->avg('rating');
+
+        $recipe->rating = $rating;
 
         if( !$recipe ){
             return response()->json([
