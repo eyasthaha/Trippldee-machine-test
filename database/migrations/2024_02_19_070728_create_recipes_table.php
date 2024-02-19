@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('prep_time');
-            $table->int('difficulty');
+            $table->string('difficulty');
             $table->boolean('veg');
             $table->timestamps();
         });

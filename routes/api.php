@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\RatingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,15 +26,19 @@ Route::post('login', [AuthController::class, 'login']);
 Route::group(['middleware' => 'auth:sanctum','prefix' => 'user'], function() {
 
     
-    Route::post('create', [RecipeController::class, 'create']);
-    Route::post('update/{id}', [RecipeController::class, 'update']);
-    Route::delete('delete/{id}', [RecipeController::class, 'delete']);
+    Route::post('/recipes', [RecipeController::class, 'create']);
+    Route::post('/recipes/{id}', [RecipeController::class, 'update']);
+    Route::delete('/recipes/{id}', [RecipeController::class, 'delete']);
 
 });
 
 
-Route::get('getrecipe/{id}', [RecipeController::class, 'getRecipe']);
-Route::get('listrecipe', [RecipeController::class, 'listRecipe']);
+Route::get('/recipes/{id}', [RecipeController::class, 'getRecipe']);
+Route::get('/recipes', [RecipeController::class, 'listRecipe']);
+
+//Rate recipe
+
+Route::post('/recipes/{id}/rating', [RatingController::class, 'rateRecipe']);
 
 
 
